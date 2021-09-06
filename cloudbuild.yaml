@@ -1,0 +1,10 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '--tag=gcr.io/$PROJECT_ID/empcrud:$TAG_NAME', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '--file=app_backend/Dockerfile','--tag=gcr.io/$PROJECT_ID/backend-app:$TAG_NAME', 'app_backend/.']
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: ['cp', '-r', 'k8s/*', 'gs://$PROJECT_ID-kubernetes-manifests']
+images: 
+- 'gcr.io/$PROJECT_ID/empcrud:$TAG_NAME'
+- 'gcr.io/$PROJECT_ID/backend-app:$TAG_NAME'

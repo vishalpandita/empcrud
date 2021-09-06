@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-webapp-production
+  #labels:
+  #app: nginx-webapp-production
+  #name: nginx-webapp-production
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empcrud
+      role: webapp
+      env: production
+  #strategy: {}
+  template:
+    metadata:
+      labels:
+        app: empcrud
+        role: webapp
+        env: production
+    spec:
+      containers:
+      - image: gcr.io/august-impact-324917/empcrud
+        name: webapp
+        imagePullPolicy: Always
+        #resources: {}
+        env: 
+        - name: serviceendpoint
+          value: http://localhost
+        ports:
+          - containerPort: 80
+            name: webapp

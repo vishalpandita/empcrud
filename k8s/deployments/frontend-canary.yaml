@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-webapp-canary
+  #labels:
+  #app: nginx-webapp-canary
+  #name: nginx-webapp-canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empcrud
+      role: webapp
+      env: canary
+  #strategy: {}
+  template:
+    metadata:
+      labels:
+        app: empcrud
+        role: webapp
+        env: canary
+    spec:
+      containers:
+      - image: gcr.io/august-impact-324917/empcrud
+        name: webapp
+        imagePullPolicy: Always
+        #resources: {}
+        env:
+        - name: serviceendpoint
+          value: http://backend:8080
+        ports:
+          - containerPort: 80
+            name: webapp
