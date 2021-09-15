@@ -112,8 +112,8 @@ spec:
 
   }
   environment {
-    PROJECT = 'REPLACE_WITH_YOUR_PROJECT_ID'
-    APP_NAME = 'gceme'
+    PROJECT = 'august-impact-324917'
+    APP_NAME = 'empcrud'
     FE_SVC_NAME = "${APP_NAME}-frontend"
     CLUSTER = 'jenkins-cd'
     CLUSTER_ZONE = 'us-east1-d'
