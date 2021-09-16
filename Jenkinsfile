@@ -9,7 +9,7 @@ pipeline {
 
       }
       steps {
-        sh 'docker build -t vishal/aalu'
+        sh 'docker build -t vishal/aalu .'
         stash(name: 'container', excludes: '**/vishal*')
       }
     }
