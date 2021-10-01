@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Build Python') {
       steps {
-        sh 'docker build -t vishalpandita/backend -f  app_backend/Dockerfile .'
+        sh 'cd app_backend'
+        sh 'docker build -t vishalpandita/backend  .'
       }
     }
 
