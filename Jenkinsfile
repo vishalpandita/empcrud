@@ -4,7 +4,10 @@ pipeline {
     stage('deploy stack first') {
       agent any
       steps {
-        sh 'good'
+ sshagent(credentials : ['d7c68129-2241-40ef-abe7-00c88b05543e']) {
+            sh 'ssh -o StrictHostKeyChecking=no cloud_user@dc6671982c1c.mylabserver.com uptime'
+            sh 'echo "Ehell"'
+            sh 'ls'
       }
     }
 
