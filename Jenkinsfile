@@ -10,6 +10,7 @@ pipeline {
             sh 'ls'
       }
     }
+	}
 
     stage('Build') {
       agent {
