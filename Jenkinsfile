@@ -18,13 +18,14 @@ pipeline {
       steps {
         sh 'sed -i "s;vishalpandita/backend:v1.0.1;vishalpandita/backend:latest/;" stack/demo-stack-backend.yml'
         sh 'sed -i "s;vishalpandita/frontend:v1.0.1;vishalpandita/frontend:latest;" stack/demo-stack.yml'
+        
       }
     }
 
     stage('Transfer stack') {
       agent any
       steps {
-        sshPublisher(failOnError: true, masterNodeName: 'clouduser')
+        sshPublisher(publishers: [sshPublisherDesc(configName: 'clouduser', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/cloud_user', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'stack/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
       }
     }
 
