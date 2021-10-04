@@ -18,7 +18,7 @@ pipeline {
       steps {
         sh 'sed -i "s;vishalpandita/backend:v1.0.1;vishalpandita/backend:latest/;" stack/demo-stack-backend.yml'
         sh 'sed -i "s;vishalpandita/frontend:v1.0.1;vishalpandita/frontend:latest;" stack/demo-stack.yml'
-        
+        stash(name: 'stackfiles', includes: '**/*yml')
       }
     }
 
@@ -26,10 +26,9 @@ pipeline {
       agent any
       steps {
         sshPublisher(publishers: [sshPublisherDesc(configName: 'clouduser', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'stack/*'), sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ls', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+        unstash 'stackfiles'
       }
     }
-
-    
 
   }
 }
