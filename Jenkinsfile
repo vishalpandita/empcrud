@@ -7,6 +7,7 @@ pipeline {
     stage('Build Docker files') {
       agent any
       steps {
+        sh 'echo "${params.BRANCH}"'
         sh 'export version={$(head -1 empcrud/stack/demo-stack.yml),1,6}'
         sh 'echo $version'
         sh 'docker build -t vishalpandita/frontend . '
