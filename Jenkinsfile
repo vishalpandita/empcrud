@@ -25,15 +25,23 @@ pipeline {
     stage('Transfer stack') {
       agent any
       steps {
-        sshPublisher(publishers: [sshPublisherDesc(configName: 'clouduser', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/cloud_user', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'stack/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+        sshPublisher(publishers: [sshPublisherDesc(configName: 'clouduser', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ls', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/cloud_user', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'stack/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
       }
     }
 
     stage('Deploy Stack') {
-      agent any
+       agent {
+                docker {
+                    image 'ictu/sshpass'
+                  args '-p password ssh -o StrictHostKeyChecking=no cloud_user@dc6671982c1c.mylabserver.com'
+                    // Run the container on the node specified at the top-level of the Pipeline, in the same workspace, rather than on a new node entirely:
+                    reuseNode true
+                }
+            }
+
       steps {
-        sh 'docker run --rm -it ictu/sshpass -p password ssh -o StrictHostKeyChecking=no cloud_user@dc6671982c1c.mylabserver.com "ls"'
-        sh 'docker run --rm -it ictu/sshpass -p password ssh -o StrictHostKeyChecking=no cloud_user@dc6671982c1c.mylabserver.com "ls"'
+        sh 'ls'
+        sh 'ls'
       }
     }
 
