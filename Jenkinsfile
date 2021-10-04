@@ -16,8 +16,8 @@ pipeline {
     stage('generate Stack files') {
       agent any
       steps {
-        sh 'sed -i "s/vishalpandita\/backend:v1.0.1/vishalpandita\/backend:latest/" stack/demo-stack-backend.yml'
-		sh 'sed -i "s/vishalpandita\/frontend:v1.0.1/vishalpandita\/frontend:latest/" stack/demo-stack.yml'
+        sh 'sed -i "s;vishalpandita/backend:v1.0.1;vishalpandita/backend:latest;" stack/demo-stack-backend.yml'
+		sh 'sed -i "s;vishalpandita/frontend:v1.0.1;vishalpandita/frontend:latest;" stack/demo-stack.yml'
       }
     }
     stage('deploy') {
