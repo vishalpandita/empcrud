@@ -30,7 +30,7 @@ pipeline {
             }
 	  
       steps {
-        sh 'docker run --rm -it ictu/sshpass -p password ssh -o StrictHostKeyChecking=no cloud_user@dc6671982c1c.mylabserver.com "scp scripts/* cloud_user@dc6671982c1c.mylabserver.com:/home/cloud_user"'
+        sh 'sshpass -p password scp stack/* cloud_user@dc6671982c1c.mylabserver.com:/home/cloud_user'
 		}
 	stage('Deploy Stack')
 	agent any
