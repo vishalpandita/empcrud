@@ -1,14 +1,5 @@
 pipeline {
   agent none
-  when {
-  not {
-    allOf {
-      branch comparator: 'GLOB', pattern: 'main*'
-      branch comparator: 'GLOB', pattern: 'develop*'
-    }
-  }
-  beforeAgent true
-
   stages {
     stage('Build Docker files') {
       agent any
@@ -25,8 +16,8 @@ pipeline {
     stage('generate Stack files') {
       agent any
       steps {
-        sh 'sed -i "s;vishalpandita/backend:v1.0.1;vishalpandita/backend:latest;" stack/demo-stack-backend.yml'
-		sh 'sed -i "s;vishalpandita/frontend:v1.0.1;vishalpandita/frontend:latest;" stack/demo-stack.yml'
+        sh 'sed -i "s/vishalpandita\/backend:v1.0.1/vishalpandita\/backend:latest/" stack/demo-stack-backend.yml'
+		sh 'sed -i "s/vishalpandita\/frontend:v1.0.1/vishalpandita\/frontend:latest/" stack/demo-stack.yml'
       }
     }
     stage('deploy') {
@@ -39,5 +30,5 @@ pipeline {
     }
 
   }
-}
+
 }
