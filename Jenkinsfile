@@ -32,8 +32,8 @@ pipeline {
     stage('Deploy Stack') {
       agent any
       steps {
-        sh 'docker run --rm -it ictu/sshpass -p password ssh -o StrictHostKeyChecking=no cloud_user@dc6671982c1c.mylabserver.com "docker stack deploy -c demo-stack-backend.yml demoapp"'
-        sh 'docker run --rm -it ictu/sshpass -p password ssh -o StrictHostKeyChecking=no cloud_user@dc6671982c1c.mylabserver.com "docker stack deploy -c demo-stack.yml demoapp"'
+        sh 'docker run --rm -it ictu/sshpass -p password ssh -o StrictHostKeyChecking=no cloud_user@dc6671982c1c.mylabserver.com "ls"'
+        sh 'docker run --rm -it ictu/sshpass -p password ssh -o StrictHostKeyChecking=no cloud_user@dc6671982c1c.mylabserver.com "ls"'
       }
     }
 
