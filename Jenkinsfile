@@ -7,7 +7,7 @@ pipeline {
 		sh 'export version={$(head -1 empcrud/stack/demo-stack.yml),1,6}'
 		sh 'echo $version'
 		sh 'docker build -t vishalpandita/frontend . '
-		sh 'push vishalpandita/frontend'
+		sh 'docker push vishalpandita/frontend'
 		sh 'docker build -t vishalpandita/backend ./app_backend'
 		sh 'docker push vishalpandita/backend'
     }
