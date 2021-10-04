@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   frontend:
-    image: vishalpandita/frontend:v1.0.0
+    image: vishalpandita/frontend:v1.0.1
     ports:
       - "80:80"    
   db:
@@ -11,14 +11,5 @@ services:
       MYSQL_ROOT_PASSWORD: needsencryption
     volumes:
       - "dbdata:/var/lib/mysql"
-  backend:
-    image: vishalpandita/backend:v1.0.0
-    expose:
-      - "8080"
-    environment:
-      DATABASE_USER: root
-      DATABASE_PASSWORD: needsencryption
-      DATABASE_NAME: empdb
-      DBHOST: db
 volumes:
   dbdata:

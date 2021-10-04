@@ -10,7 +10,7 @@
         }
         componentDidMount(){
           //debugger;
-          axios.get('http://34.134.57.158/api/')
+          axios.get('/api/')
             .then(response => {
                 console.log(response);
                     console.log(response.data);

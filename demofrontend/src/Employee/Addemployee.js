@@ -13,7 +13,7 @@ Department:''
 }  
 }   
 Addemployee = () => {
-    axios.post('http://34.134.57.158/api/', {
+    axios.post('/api/', {
       firstname: this.state.FirstName,
       lastname: this.state.LastName,
       email: this.state.Email,

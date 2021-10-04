@@ -22,7 +22,7 @@ class Edit extends React.Component {
     }  
   
   componentDidMount() {  
-      axios.get('http://34.134.57.158/api/'+this.props.match.params.id+'/')  
+      axios.get('/api/'+this.props.match.params.id+'/')  
           .then(response => {  
               this.setState({   
                 FirstName: response.data.firstname,   
@@ -67,7 +67,7 @@ class Edit extends React.Component {
       department: this.state.Department
  
     };
-    axios.put('http://34.134.57.158/api/'+this.props.match.params.id+'/', obj)
+    axios.put('/api/'+this.props.match.params.id+'/', obj)
         .then((res, rej) => {
       let retVal;
       if (res) {

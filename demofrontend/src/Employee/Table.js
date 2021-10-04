@@ -7,7 +7,7 @@ class Table extends Component {
     }  
       
     DeleteEmployee = () => {
-    axios.delete('http://34.134.57.158/api/' + this.props.obj.id + '/')
+    axios.delete('/api/' + this.props.obj.id + '/')
       .then((res, rej) => {
         let retVal;
         if (res) {
