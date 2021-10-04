@@ -32,8 +32,8 @@ pipeline {
     stage('Deploy Stack') {
        agent {
                 docker {
-                    image 'ictu/sshpass'
-                  args '-p password ssh -o StrictHostKeyChecking=no cloud_user@dc6671982c1c.mylabserver.com'
+                    image 'ictu/sshpass -p password ssh -o StrictHostKeyChecking=no cloud_user@dc6671982c1c.mylabserver.com'
+
                     // Run the container on the node specified at the top-level of the Pipeline, in the same workspace, rather than on a new node entirely:
                     reuseNode true
                 }
