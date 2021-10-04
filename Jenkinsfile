@@ -8,7 +8,7 @@ pipeline {
       agent any
       steps {
         sh 'echo "--------------------------------------------------------------------------------------------------\n"'
-        sh 'echo " Branch is ${BRANCH_NAME}"'
+        sh 'echo " Branch is patanahin"'
         sh 'export version=$$(head -1 stack/demo-stack.yml),1,6}'
         sh 'echo $version'
         sh 'docker build -t vishalpandita/frontend . '
