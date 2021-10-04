@@ -10,7 +10,7 @@ pipeline {
         sh 'echo "--------------------------------------------------------------------------------------------------\n"'
         sh 'echo " Branch is patanahin"'
         sh 'export version=$(head -1 stack/demo-stack.yml)'
-        version=version.substring(1)
+        version=version.substring(1);
         sh '"Version is $version"'
         sh 'docker build -t vishalpandita/frontend . '
         sh 'docker push vishalpandita/frontend'
