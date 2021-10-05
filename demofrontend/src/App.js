@@ -12,10 +12,10 @@ function App() {
           <div className="collapse navbar-collapse" >  
             <ul className="navbar-nav mr-auto">  
               <li className="nav-item">  
-                <Link to={'/Addemployee'} className="nav-link">Employee Addition</Link>  
+                <Link to={'/Addemployee'} className="nav-link">Employee_one_Addition</Link>  
               </li>  
               <li className="nav-item">  
-                <Link to={'/Employeelist'} className="nav-link">Employee Listing</Link>  
+                <Link to={'/Employeelist'} className="nav-link">Employee_one_Listing</Link>  
               </li>  
             </ul>  
           </div>  
