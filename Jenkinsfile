@@ -1,11 +1,17 @@
 pipeline {
   agent none
+  parameters {
+    gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+  }
   stages {
     stage('Build Docker files') {
       agent any
       steps {
-        sh 'export version={$(head -1 empcrud/stack/demo-stack.yml),1,6}'
-        sh 'echo $version'
+        sh 'echo "--------------------------------------------------------------------------------------------------\n"'
+        sh 'echo " Branch is patanahin"'
+        sh 'export version=$(head -1 stack/demo-stack.yml)'
+        version=version.substring(1);
+        sh '"Version is $version"'
         sh 'docker build -t vishalpandita/frontend . '
         sh 'docker push vishalpandita/frontend'
         sh 'docker build -t vishalpandita/backend ./app_backend'
