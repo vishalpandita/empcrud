@@ -9,7 +9,7 @@ services:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_ROOT_PASSWORD: needsencryption
+      MYSQL_ROOT_PASSWORD: {MYSQLPASSWD}
     volumes:
       - "dbdata:/var/lib/mysql"
 volumes:

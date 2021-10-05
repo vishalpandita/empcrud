@@ -5,7 +5,7 @@ services:
     expose:
       - "8080"
     environment:
-      DATABASE_USER: root
-      DATABASE_PASSWORD: needsencryption
+      DATABASE_USER: {DATABASE_USER}
+      DATABASE_PASSWORD: {DATABASE_PASSWORD}
       DATABASE_NAME: empdb
       DBHOST: db 
