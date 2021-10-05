@@ -5,7 +5,7 @@ pipeline {
       agent any
         when {
           not {
-    allOf {
+    anyOf {
       branch comparator: 'GLOB', pattern: 'main*'
       branch comparator: 'GLOB', pattern: 'develop*'
     }
